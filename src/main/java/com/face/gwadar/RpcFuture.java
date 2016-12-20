@@ -36,11 +36,16 @@ public class RpcFuture implements Future<Object> {
     @Override
     public Object get() throws InterruptedException, ExecutionException {
         countDownLatch.await();
-        return response.getResult();
+        if (isDone()) {
+            return response.getResult();
+        } else {
+            throw new RpcException("response message is null after count down");
+        }
     }
 
     @Override
     public Object get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+
         return null;
     }
 

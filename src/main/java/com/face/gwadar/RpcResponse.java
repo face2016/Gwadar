@@ -36,4 +36,13 @@ public class RpcResponse implements Serializable {
     public void setResult(Object result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("requestId=").append(requestId).append(",")
+                .append("errorMsg=").append(error.getMessage()).append(",")
+                .append("result=").append(result)
+                .toString();
+    }
 }

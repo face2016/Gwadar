@@ -11,8 +11,10 @@ public class RpcEncoder extends ObjectSerializationEncoder {
 
     @Override
     public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
-        if (RpcRequest.class.isInstance(message)) {   // message是否实现了RpcRequest
+        if (RpcRequest.class.isInstance(message) || RpcResponse.class.isInstance(message)) {
             super.encode(session, message, out);
+        } else {
+            throw new RpcException("message ready to encode is not an instance of RpcRequest or RpcResponse");
         }
     }
 

@@ -1,6 +1,7 @@
 package com.face.gwadar;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Created by yuanxiaochun on 2016/12/14.
@@ -67,4 +68,14 @@ public class RpcRequest implements Serializable {
         this.timeout = timeout;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("requestId=").append(requestId).append(",")
+                .append("class=").append(clazz).append(",")
+                .append("methodName=").append(methodName).append(",")
+                .append("paramType=").append(Arrays.toString(parameterTypes)).append(",")
+                .append("paramValue=").append(Arrays.toString(parameterValues))
+                .toString();
+    }
 }
